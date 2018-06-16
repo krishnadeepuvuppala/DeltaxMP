@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MoviePortalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ACTOR">
+    <Key>
+      <PropertyRef Name="ACTOR_ANID" />
+    </Key>
+    <Property Name="ACTOR_ANID" Type="Int32" Nullable="false" />
+    <Property Name="ACTOR_NAME" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="ACTOR_GENDER" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="ACTOR_DOB" Type="DateTime" Precision="0" />
+    <Property Name="ACTOR_BIO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="CREATED_DTTM" Type="DateTime" Precision="3" />
+    <Property Name="UPDATED_BY" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="UPDATED_DTTM" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="MOVy">
+    <Key>
+      <PropertyRef Name="MOVIE_ANID" />
+    </Key>
+    <Property Name="MOVIE_ANID" Type="Int32" Nullable="false" />
+    <Property Name="MOVIE_NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="MOVIE_YOR" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MOVIE_PLOT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MOVIE_POSTER" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="CREATED_DTTM" Type="DateTime" Precision="3" />
+    <Property Name="UPDATED_BY" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="UPDATED_DTTM" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="PRODUCER">
+    <Key>
+      <PropertyRef Name="PRODUCER_ANID" />
+    </Key>
+    <Property Name="PRODUCER_ANID" Type="Int32" Nullable="false" />
+    <Property Name="PRODUCER_NAME" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="PRODUCER_GENDER" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="PRODUCER_DOB" Type="DateTime" Precision="0" />
+    <Property Name="PRODUCER_BIO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CREATED_BY" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="CREATED_DTTM" Type="DateTime" Precision="3" />
+    <Property Name="UPDATED_BY" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="UPDATED_DTTM" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityContainer Name="MoviePortalEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ACTORS" EntityType="Self.ACTOR" />
+    <EntitySet Name="MOVIES" EntityType="Self.MOVy" />
+    <EntitySet Name="PRODUCERS" EntityType="Self.PRODUCER" />
+  </EntityContainer>
+</Schema>

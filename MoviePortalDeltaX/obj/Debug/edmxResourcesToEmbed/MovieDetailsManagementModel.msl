@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MoviePortalModelStoreContainer" CdmEntityContainer="MoviePortalEntities">
+    <EntitySetMapping Name="ACTORS">
+      <EntityTypeMapping TypeName="MoviePortalModel.ACTOR">
+        <MappingFragment StoreEntitySet="ACTORS">
+          <ScalarProperty Name="ACTOR_ANID" ColumnName="ACTOR_ANID" />
+          <ScalarProperty Name="ACTOR_NAME" ColumnName="ACTOR_NAME" />
+          <ScalarProperty Name="ACTOR_GENDER" ColumnName="ACTOR_GENDER" />
+          <ScalarProperty Name="ACTOR_DOB" ColumnName="ACTOR_DOB" />
+          <ScalarProperty Name="ACTOR_BIO" ColumnName="ACTOR_BIO" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DTTM" ColumnName="CREATED_DTTM" />
+          <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+          <ScalarProperty Name="UPDATED_DTTM" ColumnName="UPDATED_DTTM" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MOVIES">
+      <EntityTypeMapping TypeName="MoviePortalModel.MOVy">
+        <MappingFragment StoreEntitySet="MOVIES">
+          <ScalarProperty Name="MOVIE_ANID" ColumnName="MOVIE_ANID" />
+          <ScalarProperty Name="MOVIE_NAME" ColumnName="MOVIE_NAME" />
+          <ScalarProperty Name="MOVIE_YOR" ColumnName="MOVIE_YOR" />
+          <ScalarProperty Name="MOVIE_PLOT" ColumnName="MOVIE_PLOT" />
+          <ScalarProperty Name="MOVIE_POSTER" ColumnName="MOVIE_POSTER" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DTTM" ColumnName="CREATED_DTTM" />
+          <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+          <ScalarProperty Name="UPDATED_DTTM" ColumnName="UPDATED_DTTM" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PRODUCERS">
+      <EntityTypeMapping TypeName="MoviePortalModel.PRODUCER">
+        <MappingFragment StoreEntitySet="PRODUCERS">
+          <ScalarProperty Name="PRODUCER_ANID" ColumnName="PRODUCER_ANID" />
+          <ScalarProperty Name="PRODUCER_NAME" ColumnName="PRODUCER_NAME" />
+          <ScalarProperty Name="PRODUCER_GENDER" ColumnName="PRODUCER_GENDER" />
+          <ScalarProperty Name="PRODUCER_DOB" ColumnName="PRODUCER_DOB" />
+          <ScalarProperty Name="PRODUCER_BIO" ColumnName="PRODUCER_BIO" />
+          <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+          <ScalarProperty Name="CREATED_DTTM" ColumnName="CREATED_DTTM" />
+          <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+          <ScalarProperty Name="UPDATED_DTTM" ColumnName="UPDATED_DTTM" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

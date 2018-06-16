@@ -1,0 +1,103 @@
+﻿
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.datatables.net/responsive/2.2.1/css/responsive.bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.1/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.1/js/responsive.bootstrap.min.js"></script>
+
+    <script src="../Scripts/util.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            utils.HttpGet("/getmovieslist", onSuccess, OnError);
+        });
+        function onSuccess(data) {
+            if (data.Message = 'success') {
+                var oTable = $('#tblMovies').dataTable({
+                    "destroy": true,//For avoiding the "reinitialize of datatable" error.(Strting with empty table.)
+                    "responsive": true,//For proper UI experience in all resolutions.
+                    "data": data.MovieList,
+                    "columns": [
+                               { "data": "Name" },
+                               { "data": "Year" },
+                               { "data": "Actors" },
+                               { "data": "Producer" },
+                               { "data": "Poster" },
+                               {
+                                   "data": "Actions",
+                                   "render": function (data) {//Attaching the link for edit functionality functionality.
+                                       data = '<a class="btn btn-info" target="_blank" href="CreateMovie.html?movieid=' + data + '">' + 'Edit' + '</a>';
+                                       return data;
+                                   }
+                               }
+                    ],
+                    "iDisplayLength": -1,
+                    "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+                    "language": {
+                        "infoFiltered": "",                         //overriding the unwanted label showing the number of records filtered out of total number of records.
+                        "infoEmpty": "",                            //Replaces the number of records info at the bottem of the datatable.
+                        "emptyTable": "No entries to show",         //Info shown inside the datatable if the API call returns the empty data table.
+                        "sZeroRecords": "No matching records found" //When no records are found on search this message is displayed.
+                    }
+                });
+            }
+            else {
+
+            }
+            //alert(JSON.stringify(data));
+        }
+        function OnError(data) {
+            alert(JSON.stringify(data));
+        }
+    </script>
+
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <div class="container">
+                <div class="tabs_margin nocta">
+                    <a id="btnCreateMove" class="btn btn-info" style="float:right;margin:20px" target="_blank" href="CreateMovie.html">Create Movie</a>
+                    <div class="col-sm-3 hidden-xs">
+
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 content-body" style="min-height: 500px;">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <table id="tblMovies" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Year</th>
+                                                <th>Actors</th>
+                                                <th>Producer</th>
+                                                <th>Poster</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </form>
+</body>
+</html>

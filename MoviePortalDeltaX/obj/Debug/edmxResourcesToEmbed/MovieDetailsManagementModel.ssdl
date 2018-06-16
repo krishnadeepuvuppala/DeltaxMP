@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MoviePortalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ACTORS">
+    <Key>
+      <PropertyRef Name="ACTOR_ANID" />
+    </Key>
+    <Property Name="ACTOR_ANID" Type="int" Nullable="false" />
+    <Property Name="ACTOR_NAME" Type="nvarchar" MaxLength="300" />
+    <Property Name="ACTOR_GENDER" Type="char" MaxLength="1" />
+    <Property Name="ACTOR_DOB" Type="date" />
+    <Property Name="ACTOR_BIO" Type="varchar(max)" />
+    <Property Name="CREATED_BY" Type="nvarchar" MaxLength="300" />
+    <Property Name="CREATED_DTTM" Type="datetime" />
+    <Property Name="UPDATED_BY" Type="nvarchar" MaxLength="300" />
+    <Property Name="UPDATED_DTTM" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'MoviePortal.dbo.CREW_UNION' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="CREW_UNION">
+          <Property Name="CREWUNION_ANID" Type="int" />
+          <Property Name="MOVIE_ANID" Type="int" />
+          <Property Name="ACTOR_ANID" Type="int" />
+          <Property Name="PRODUCER_ANID" Type="int" />
+          <Property Name="ASSOCIATEDYESNO" Type="bit" />
+          <Property Name="CREATED_BY" Type="nvarchar" MaxLength="300" />
+          <Property Name="CREATED_DTTM" Type="datetime" />
+          <Property Name="UPDATED_BY" Type="nvarchar" MaxLength="300" />
+          <Property Name="UPDATED_DTTM" Type="datetime" />
+        </EntityType>-->
+  <EntityType Name="MOVIES">
+    <Key>
+      <PropertyRef Name="MOVIE_ANID" />
+    </Key>
+    <Property Name="MOVIE_ANID" Type="int" Nullable="false" />
+    <Property Name="MOVIE_NAME" Type="nvarchar" MaxLength="200" />
+    <Property Name="MOVIE_YOR" Type="nvarchar" MaxLength="50" />
+    <Property Name="MOVIE_PLOT" Type="nvarchar(max)" />
+    <Property Name="MOVIE_POSTER" Type="varbinary(max)" />
+    <Property Name="CREATED_BY" Type="nvarchar" MaxLength="300" />
+    <Property Name="CREATED_DTTM" Type="datetime" />
+    <Property Name="UPDATED_BY" Type="nvarchar" MaxLength="300" />
+    <Property Name="UPDATED_DTTM" Type="datetime" />
+  </EntityType>
+  <EntityType Name="PRODUCERS">
+    <Key>
+      <PropertyRef Name="PRODUCER_ANID" />
+    </Key>
+    <Property Name="PRODUCER_ANID" Type="int" Nullable="false" />
+    <Property Name="PRODUCER_NAME" Type="nvarchar" MaxLength="300" />
+    <Property Name="PRODUCER_GENDER" Type="char" MaxLength="1" />
+    <Property Name="PRODUCER_DOB" Type="date" />
+    <Property Name="PRODUCER_BIO" Type="nvarchar(max)" />
+    <Property Name="CREATED_BY" Type="nvarchar" MaxLength="300" />
+    <Property Name="CREATED_DTTM" Type="datetime" />
+    <Property Name="UPDATED_BY" Type="nvarchar" MaxLength="300" />
+    <Property Name="UPDATED_DTTM" Type="datetime" />
+  </EntityType>
+  <EntityContainer Name="MoviePortalModelStoreContainer">
+    <EntitySet Name="ACTORS" EntityType="Self.ACTORS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MOVIES" EntityType="Self.MOVIES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PRODUCERS" EntityType="Self.PRODUCERS" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

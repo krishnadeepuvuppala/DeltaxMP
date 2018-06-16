@@ -1,0 +1,214 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="../Scripts/util.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+
+    <script src="../Scripts/CreateMovie.js">
+
+    </script>
+</head>
+<body>
+    <form class="form-horizontal">
+        <fieldset>
+
+            <!-- Form Name -->
+            <legend>Create Movie</legend>
+
+            <div id="divMessage" role="alert">
+            </div>
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="txtMovieName">Movie Name</label>
+                <div class="col-md-4">
+                    <input id="txtMovieName" name="txtMovieName" type="text" placeholder="" class="form-control input-md">
+
+                </div>
+            </div>
+
+            <!-- Textarea -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="txtPlot">Plot</label>
+                <div class="col-md-4">
+                    <textarea class="form-control" id="txtPlot" name="txtPlot"></textarea>
+                </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="txtYear">Year of release</label>
+                <div class="col-md-4">
+                    <input id="txtYear" name="txtYear" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')" type="text" placeholder="" class="form-control input-md">
+
+                </div>
+            </div>
+
+            <!-- Select Basic -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="ddlProducer">Producer</label>
+                <div class="col-md-4">
+                    <select id="ddlProducer" name="ddlProducer" class="form-control">
+                        <option value="0">select producer</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Button -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="btnAddProducer"></label>
+                <div class="col-md-4">
+                    <button id="btnAddProducer" type="button" name="btnAddProducer" class="btn btn-info">Add Producer</button>
+                </div>
+
+                <div id="divCreateProducer" style="display:none">
+                    <fieldset>
+                        <legend>Create Producer:</legend>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="txtProducerName">Name</label>
+                            <div class="col-md-4">
+                                <input id="txtProducerName" name="txtProducerName" type="text" placeholder="" class="form-control input-md">
+
+                            </div>
+                        </div>
+
+                        <!-- Multiple Radios (inline) -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="rdoGender">Gender</label>
+                            <div class="col-md-4">
+                                <div id="genderButtons">
+                                    <input type="radio" class="radio-inline" name="radioName" value="M" /> M <br />
+                                    <input type="radio" class="radio-inline" name="radioName" value="F" /> F <br />
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="dttmDOB">DOB</label>
+                            <div class="col-md-4">
+                                <div class='input-group date' id='datetimepicker1'>
+                                    <input type='text' id="dttmProducer" class="form-control" />
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- Textarea -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="txtBio">Bio</label>
+                            <div class="col-md-4">
+                                <textarea class="form-control" id="txtBio" name="txtBio"></textarea>
+                            </div>
+
+                        </div>
+                        <div class="col-md-6" style="margin-left:150px">
+                            <button id="btnSaveProducer" type="button" name="btnSaveProducer" class="btn btn-info">Save</button>
+                            <button id="btnCancelProducer" type="button" name="btnCancelProducer" class="btn btn-default">Cancel</button>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+
+            <!-- Select Multiple -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="ddlActors">Actors</label>
+                <div class="col-md-4">
+                    <select id="ddlActors" name="ddlActors" class="form-control" multiple="multiple"></select>
+                </div>
+            </div>
+
+            <!-- Button -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="btnAddActor"></label>
+                <div class="col-md-4">
+                    <button id="btnAddActor" type="button" name="btnAddActor" class="btn btn-info">Add Actor</button>
+                </div>
+                <div id="divCreateActor" style="display:none">
+                    <fieldset>
+                        <legend>Create Actor:</legend>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="txtActorName">Name</label>
+                            <div class="col-md-4">
+                                <input id="txtActorName" name="txtActorName" type="text" placeholder="" class="form-control input-md">
+
+                            </div>
+                        </div>
+
+                        <!-- Multiple Radios (inline) -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="rdoGender">Gender</label>
+                            <div class="col-md-4">
+                                <div id="actorGenderButtons">
+                                    <input type="radio" class="radio-inline" name="radioName" value="M" /> M <br />
+                                    <input type="radio" class="radio-inline" name="radioName" value="F" /> F <br />
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="actorDttmDOB">DOB</label>
+                            <div class="col-md-4">
+                                <div class='input-group date' id='datetimepicker2'>
+                                    <input type='text' id="dttmActor" class="form-control" />
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- Textarea -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="txtBio">Bio</label>
+                            <div class="col-md-4">
+                                <textarea class="form-control" id="txtActorBio" name="txtActorBio"></textarea>
+                            </div>
+
+                        </div>
+                        <div class="col-md-6" style="margin-left:150px">
+                            <button id="btnSaveActor" type="button" name="btnSaveActor" class="btn btn-info">Save</button>
+                            <button id="btnCancelActor" type="button" name="btnCancelActor" class="btn btn-default">Cancel</button>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+
+            <!-- File Button -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="imgPoster">Poster</label>
+                <div class="col-md-4">
+                    <input id="inp" type='file'>
+                </div>
+            </div>
+
+            <!-- Button -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="btnSubmit"></label>
+                <div class="col-md-4">
+                    <button id="btnSubmit" type="button" name="btnSubmit" class="btn btn-primary">Submit</button> <!---->
+                </div>
+            </div>
+        </fieldset>
+    </form>
+
+
+</body>
+</html>
+
+

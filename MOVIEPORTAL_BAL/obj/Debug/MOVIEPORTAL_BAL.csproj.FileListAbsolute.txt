@@ -1,0 +1,5 @@
+G:\projects\MoviePortalDeltaX\MOVIEPORTAL_BAL\bin\Debug\MOVIEPORTAL_BAL.dll
+G:\projects\MoviePortalDeltaX\MOVIEPORTAL_BAL\bin\Debug\MOVIEPORTAL_BAL.pdb
+G:\projects\MoviePortalDeltaX\MOVIEPORTAL_BAL\obj\Debug\MOVIEPORTAL_BAL.csprojResolveAssemblyReference.cache
+G:\projects\MoviePortalDeltaX\MOVIEPORTAL_BAL\obj\Debug\MOVIEPORTAL_BAL.dll
+G:\projects\MoviePortalDeltaX\MOVIEPORTAL_BAL\obj\Debug\MOVIEPORTAL_BAL.pdb

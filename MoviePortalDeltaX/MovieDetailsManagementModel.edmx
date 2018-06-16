@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MoviePortalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ACTORS">
+          <Key>
+            <PropertyRef Name="ACTOR_ANID" />
+          </Key>
+          <Property Name="ACTOR_ANID" Type="int" Nullable="false" />
+          <Property Name="ACTOR_NAME" Type="nvarchar" MaxLength="300" />
+          <Property Name="ACTOR_GENDER" Type="char" MaxLength="1" />
+          <Property Name="ACTOR_DOB" Type="date" />
+          <Property Name="ACTOR_BIO" Type="varchar(max)" />
+          <Property Name="CREATED_BY" Type="nvarchar" MaxLength="300" />
+          <Property Name="CREATED_DTTM" Type="datetime" />
+          <Property Name="UPDATED_BY" Type="nvarchar" MaxLength="300" />
+          <Property Name="UPDATED_DTTM" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'MoviePortal.dbo.CREW_UNION' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="CREW_UNION">
+          <Property Name="CREWUNION_ANID" Type="int" />
+          <Property Name="MOVIE_ANID" Type="int" />
+          <Property Name="ACTOR_ANID" Type="int" />
+          <Property Name="PRODUCER_ANID" Type="int" />
+          <Property Name="ASSOCIATEDYESNO" Type="bit" />
+          <Property Name="CREATED_BY" Type="nvarchar" MaxLength="300" />
+          <Property Name="CREATED_DTTM" Type="datetime" />
+          <Property Name="UPDATED_BY" Type="nvarchar" MaxLength="300" />
+          <Property Name="UPDATED_DTTM" Type="datetime" />
+        </EntityType>-->
+        <EntityType Name="MOVIES">
+          <Key>
+            <PropertyRef Name="MOVIE_ANID" />
+          </Key>
+          <Property Name="MOVIE_ANID" Type="int" Nullable="false" />
+          <Property Name="MOVIE_NAME" Type="nvarchar" MaxLength="200" />
+          <Property Name="MOVIE_YOR" Type="nvarchar" MaxLength="50" />
+          <Property Name="MOVIE_PLOT" Type="nvarchar(max)" />
+          <Property Name="MOVIE_POSTER" Type="varbinary(max)" />
+          <Property Name="CREATED_BY" Type="nvarchar" MaxLength="300" />
+          <Property Name="CREATED_DTTM" Type="datetime" />
+          <Property Name="UPDATED_BY" Type="nvarchar" MaxLength="300" />
+          <Property Name="UPDATED_DTTM" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PRODUCERS">
+          <Key>
+            <PropertyRef Name="PRODUCER_ANID" />
+          </Key>
+          <Property Name="PRODUCER_ANID" Type="int" Nullable="false" />
+          <Property Name="PRODUCER_NAME" Type="nvarchar" MaxLength="300" />
+          <Property Name="PRODUCER_GENDER" Type="char" MaxLength="1" />
+          <Property Name="PRODUCER_DOB" Type="date" />
+          <Property Name="PRODUCER_BIO" Type="nvarchar(max)" />
+          <Property Name="CREATED_BY" Type="nvarchar" MaxLength="300" />
+          <Property Name="CREATED_DTTM" Type="datetime" />
+          <Property Name="UPDATED_BY" Type="nvarchar" MaxLength="300" />
+          <Property Name="UPDATED_DTTM" Type="datetime" />
+        </EntityType>
+        <EntityContainer Name="MoviePortalModelStoreContainer">
+          <EntitySet Name="ACTORS" EntityType="Self.ACTORS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MOVIES" EntityType="Self.MOVIES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRODUCERS" EntityType="Self.PRODUCERS" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MoviePortalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ACTOR">
+          <Key>
+            <PropertyRef Name="ACTOR_ANID" />
+          </Key>
+          <Property Name="ACTOR_ANID" Type="Int32" Nullable="false" />
+          <Property Name="ACTOR_NAME" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="ACTOR_GENDER" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="ACTOR_DOB" Type="DateTime" Precision="0" />
+          <Property Name="ACTOR_BIO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="CREATED_DTTM" Type="DateTime" Precision="3" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="UPDATED_DTTM" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="MOVy">
+          <Key>
+            <PropertyRef Name="MOVIE_ANID" />
+          </Key>
+          <Property Name="MOVIE_ANID" Type="Int32" Nullable="false" />
+          <Property Name="MOVIE_NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="MOVIE_YOR" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MOVIE_PLOT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MOVIE_POSTER" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="CREATED_DTTM" Type="DateTime" Precision="3" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="UPDATED_DTTM" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="PRODUCER">
+          <Key>
+            <PropertyRef Name="PRODUCER_ANID" />
+          </Key>
+          <Property Name="PRODUCER_ANID" Type="Int32" Nullable="false" />
+          <Property Name="PRODUCER_NAME" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="PRODUCER_GENDER" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="PRODUCER_DOB" Type="DateTime" Precision="0" />
+          <Property Name="PRODUCER_BIO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CREATED_BY" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="CREATED_DTTM" Type="DateTime" Precision="3" />
+          <Property Name="UPDATED_BY" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="UPDATED_DTTM" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="MoviePortalEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ACTORS" EntityType="Self.ACTOR" />
+          <EntitySet Name="MOVIES" EntityType="Self.MOVy" />
+          <EntitySet Name="PRODUCERS" EntityType="Self.PRODUCER" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MoviePortalModelStoreContainer" CdmEntityContainer="MoviePortalEntities">
+          <EntitySetMapping Name="ACTORS">
+            <EntityTypeMapping TypeName="MoviePortalModel.ACTOR">
+              <MappingFragment StoreEntitySet="ACTORS">
+                <ScalarProperty Name="ACTOR_ANID" ColumnName="ACTOR_ANID" />
+                <ScalarProperty Name="ACTOR_NAME" ColumnName="ACTOR_NAME" />
+                <ScalarProperty Name="ACTOR_GENDER" ColumnName="ACTOR_GENDER" />
+                <ScalarProperty Name="ACTOR_DOB" ColumnName="ACTOR_DOB" />
+                <ScalarProperty Name="ACTOR_BIO" ColumnName="ACTOR_BIO" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="CREATED_DTTM" ColumnName="CREATED_DTTM" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="UPDATED_DTTM" ColumnName="UPDATED_DTTM" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MOVIES">
+            <EntityTypeMapping TypeName="MoviePortalModel.MOVy">
+              <MappingFragment StoreEntitySet="MOVIES">
+                <ScalarProperty Name="MOVIE_ANID" ColumnName="MOVIE_ANID" />
+                <ScalarProperty Name="MOVIE_NAME" ColumnName="MOVIE_NAME" />
+                <ScalarProperty Name="MOVIE_YOR" ColumnName="MOVIE_YOR" />
+                <ScalarProperty Name="MOVIE_PLOT" ColumnName="MOVIE_PLOT" />
+                <ScalarProperty Name="MOVIE_POSTER" ColumnName="MOVIE_POSTER" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="CREATED_DTTM" ColumnName="CREATED_DTTM" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="UPDATED_DTTM" ColumnName="UPDATED_DTTM" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUCERS">
+            <EntityTypeMapping TypeName="MoviePortalModel.PRODUCER">
+              <MappingFragment StoreEntitySet="PRODUCERS">
+                <ScalarProperty Name="PRODUCER_ANID" ColumnName="PRODUCER_ANID" />
+                <ScalarProperty Name="PRODUCER_NAME" ColumnName="PRODUCER_NAME" />
+                <ScalarProperty Name="PRODUCER_GENDER" ColumnName="PRODUCER_GENDER" />
+                <ScalarProperty Name="PRODUCER_DOB" ColumnName="PRODUCER_DOB" />
+                <ScalarProperty Name="PRODUCER_BIO" ColumnName="PRODUCER_BIO" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="CREATED_DTTM" ColumnName="CREATED_DTTM" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="UPDATED_DTTM" ColumnName="UPDATED_DTTM" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Default" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
