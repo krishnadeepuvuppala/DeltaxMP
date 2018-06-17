@@ -1,4 +1,0 @@
-G:\projects\MoviePortalDeltaX\MOVIEPORTAL_COMMON\bin\Debug\MOVIEPORTAL_COMMON.dll
-G:\projects\MoviePortalDeltaX\MOVIEPORTAL_COMMON\bin\Debug\MOVIEPORTAL_COMMON.pdb
-G:\projects\MoviePortalDeltaX\MOVIEPORTAL_COMMON\obj\Debug\MOVIEPORTAL_COMMON.dll
-G:\projects\MoviePortalDeltaX\MOVIEPORTAL_COMMON\obj\Debug\MOVIEPORTAL_COMMON.pdb
