@@ -70,4 +70,7 @@
     <Build Include="StoredProcedures\usp_ReturnProducerList.sql" />
     <Build Include="StoredProcedures\usp_UpdateMovie.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="StoredProcedures\ConsolidatedScript.sql" />
+  </ItemGroup>
 </Project>
