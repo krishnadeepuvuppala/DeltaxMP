@@ -10,7 +10,6 @@ using System.Web.Script.Serialization;
 using MOVIEPORTAL_DAL;
 using System.Data.SqlClient;
 using System.Globalization;
-//using System.Configuration;
 
 namespace MoviePortalDeltaX.Controllers
 {
@@ -27,8 +26,26 @@ namespace MoviePortalDeltaX.Controllers
             public string Actions { get; set; }
         }
 
-        // GET: MoviePortal
-        [HttpGet]
+        internal class GetMovieDetails
+        {
+            public string MOVIE_ANID { get; set; }
+            public string MOVIE_NAME { get; set; }
+            public string MOVIE_PLOT { get; set; }
+            public string MOVIE_POSTER { get; set; }
+            public string MOVIE_YOR { get; set; }
+            public string CREWUNION_ANID { get; set; }
+            public string PRODUCER_ANID { get; set; }
+            public string PRODUCER_NAME { get; set; }
+            public string ACTOR_ANIDS { get; set; }
+        }
+
+        internal class actor_ANIDs
+        {
+            public string ACTOR_ANID { get; set; }
+        }
+
+            // GET: MoviePortal
+            [HttpGet]
         [ActionName("getmoviedetails")]
         public object getMovieDetails(string movieid)
         {
@@ -45,8 +62,35 @@ namespace MoviePortalDeltaX.Controllers
                 }
                 dtMovieDetails = mo_dal.GetMovieCrew(MOVIE_ID);
 
+                string actorAnids = string.Empty;
+                List<GetMovieDetails> lstMD = new List<GetMovieDetails>();
+                foreach (DataRow dr in dtMovieDetails.Rows)
+                {
+                    GetMovieDetails gmd = new GetMovieDetails();
+                    gmd.MOVIE_ANID = dr["MOVIE_ANID"].ToString();
+                    gmd.MOVIE_NAME= dr["MOVIE_NAME"].ToString();
+                    gmd.MOVIE_PLOT = dr["MOVIE_PLOT"].ToString();
+                    gmd.MOVIE_POSTER = dr["MOVIE_POSTER"].ToString();
+                    gmd.MOVIE_YOR = dr["MOVIE_YOR"].ToString();
+                    gmd.PRODUCER_ANID = dr["PRODUCER_ANID"].ToString();
+                    gmd.PRODUCER_NAME = dr["PRODUCER_NAME"].ToString();
+                    gmd.CREWUNION_ANID = dr["CREWUNION_ANID"].ToString();
+                    actorAnids = dr["ACTOR_ANIDS"].ToString().TrimEnd(',');
+                    lstMD.Add(gmd);
+                }
+                string[] actorAnid = actorAnids.Split(',');
+
+                List<actor_ANIDs> lstACTORS = new List<actor_ANIDs>();
+
+                for(int i = 0; i < actorAnid.Length; i++)
+                {
+                    actor_ANIDs ai = new actor_ANIDs();
+                    ai.ACTOR_ANID = actorAnid[i].ToString();
+                    lstACTORS.Add(ai);
+                }
+
                 if (dtMovieDetails.Rows.Count > 0)
-                    return new { Message = "success", MovieDetails = DataTableToJSONWithJavaScriptSerializer(dtMovieDetails) };
+                    return new { Message = "success", MovieDetails = lstMD, actorAnids = lstACTORS };
                 else
                     return new { message = "error", MessageReason = "No movie avilable" };
             }
@@ -134,7 +178,7 @@ namespace MoviePortalDeltaX.Controllers
             }
         }
 
-
+        [Route("api/MoviePortal/updatemovie")]
         [HttpPost]
         [ActionName("updatemovie")]
         public object UpdateMovie(JObject json)
@@ -148,7 +192,10 @@ namespace MoviePortalDeltaX.Controllers
                 string ACTORS_ANIDS = (json["ACTORS_ANIDS"].ToString());
                 int PRODUCER_ANID = int.Parse(json["PRODUCER_ANID"].ToString());
                 string MOVIE_NAME = (json["MOVIE_NAME"].ToString());
-                int iRowsEffected = mo_dal.UpdateMovie(MOVIE_ANID, CREW_ANID, ACTORS_ANIDS, PRODUCER_ANID, MOVIE_NAME, "Admin");
+                string MOVIE_YOR = (json["MOVIE_YOR"].ToString());
+                string MOVIE_PLOT = (json["MOVIE_PLOT"].ToString());
+                string MOVIE_POSTER = (json["MOVIE_POSTER"].ToString());
+                int iRowsEffected = mo_dal.UpdateMovie(MOVIE_ANID, CREW_ANID, ACTORS_ANIDS, PRODUCER_ANID, MOVIE_NAME, "Admin", MOVIE_YOR, MOVIE_PLOT, MOVIE_POSTER);
                 if (iRowsEffected > 0)
                     return new { Message = "Success", MessageReason = "Successfully Updated movie details." };
                 else

@@ -1,10 +1,21 @@
 ﻿var imgSource = '';
+var mode = '';
+var qMovieID = 0;
+var crewUnion_Id = 0;
 $(function () {
     utils.closeMessage();
     $('#datetimepicker1').datetimepicker();
     $('#datetimepicker2').datetimepicker();
     document.getElementById("inp").addEventListener("change", readFile);
+
     utils.HttpGet("/getproducerlist", onSuccess, onError);
+    utils.HttpGet("/getactorlist", onSuccessActor, onError);
+
+    mode = utils.getQueryString('mode');
+    if (mode == 'edit') {
+        qMovieID = utils.getQueryString('movieid');
+        populateFields(qMovieID);
+    }
 
     $('#btnAddProducer').click(function () {
         $('#divCreateProducer').css("display", "block");
@@ -46,6 +57,43 @@ $(function () {
         }
     });
 
+    function populateFields(id) {
+        if (id > 0) {
+            utils.HttpGet('/getmoviedetails?movieid=' + id, onSuccessMovieDetails, onError);
+        }
+        else {
+            utils.Message("No Movie found", "error");
+        }
+    }
+
+    function onSuccessMovieDetails(data) {
+
+        $.each(data.MovieDetails, function (key, value) {
+            //alert(value.MOVIE_NAME);
+
+            $('#txtMovieName').val(value.MOVIE_NAME);
+            $('#txtPlot').val(value.MOVIE_PLOT);
+            $('#txtYear').val(value.MOVIE_YOR);
+            $("#ddlProducer").val(value.PRODUCER_ANID);
+            $("img").attr("src", value.MOVIE_POSTER);
+            imgSource = value.MOVIE_POSTER;
+            crewUnion_Id = value.CREWUNION_ANID;
+            
+        });
+
+        $.each(data.actorAnids, function (key, value) {
+            
+            var parentID = value.ACTOR_ANID;
+            $("#ddlActors option").each(function () {
+                var id = $(this).val();
+                if (id == parentID) {
+                    $(this).prop("selected", true);
+                }
+            });
+        });
+
+    }
+
     function onSuccessCreateProducer(data) {
         if (data.Message = 'success') {
             utils.closeMessage();
@@ -83,7 +131,7 @@ $(function () {
     });
 
     function onSuccessCreateActor(data) {
-        if (data.Message = 'Success') {
+        if (data.Message = 'success') {
             utils.closeMessage();
             utils.Message("Actor created succssfully", "success");
             $('#divCreateActor').css("display", "none");
@@ -92,6 +140,7 @@ $(function () {
     }
 
     $('#btnSubmit').click(function () {
+        utils.closeMessage();
         //e.preventDefault();
         var error = '';
         var movieName = $('#txtMovieName').val();
@@ -117,25 +166,49 @@ $(function () {
             return false;
         }
         else {
-
-            var json = {
-                "MOVIE_NAME": movieName,
-                "MOVIE_YOR": year,
-                "MOVIE_PLOT": plot,
-                "MOVIE_POSTER": imgSource,
-                "PRODUCER_ANID": producerId,
-                "ACTORS_ANIDS": actorIds
-
-            };
-            utils.HttpPost("/createmovie", JSON.stringify(json), onSuccessCreateMovie, onError);
+            if (mode == 'edit') {
+                var json = {
+                    "MOVIE_ANID": qMovieID,
+                    "CREW_ANID": crewUnion_Id,
+                    "MOVIE_NAME": movieName,
+                    "MOVIE_YOR": year,
+                    "MOVIE_PLOT": plot,
+                    "MOVIE_POSTER": imgSource,
+                    "PRODUCER_ANID": producerId,
+                    "ACTORS_ANIDS": actorIds
+                };
+                utils.HttpPost("/updatemovie", JSON.stringify(json), onSuccessUpdateMovie, onError);
+            }
+            else {
+                var json = {
+                    "MOVIE_NAME": movieName,
+                    "MOVIE_YOR": year,
+                    "MOVIE_PLOT": plot,
+                    "MOVIE_POSTER": imgSource,
+                    "PRODUCER_ANID": producerId,
+                    "ACTORS_ANIDS": actorIds
+                };
+                utils.HttpPost("/createmovie", JSON.stringify(json), onSuccessCreateMovie, onError);
+            }
         }
 
     });
 });
+
+function onSuccessUpdateMovie(data) {
+    utils.closeMessage();
+    if (data.Message = 'success') {
+        utils.Message("Updated Movie Successfully", "success");
+        location.href = 'MovieList.html';
+    }
+    else {
+        alert(data.MessageReason);
+    }
+}
 function onSuccessCreateMovie(data) {
     utils.closeMessage();
     if (data.Message = 'success') {
-        utils.Message("Created Movie Successfully");
+        utils.Message("Created Movie Successfully", "success");
         location.href = 'MovieList.html';
     }
     else {
@@ -187,7 +260,7 @@ function onSuccess(data) {
         $.each(JSON.parse(data.ProducerList), function (key, value) {
             $("#ddlProducer").append($("<option />").val(value.PRODUCER_ANID).html(value.PRODUCER_NAME));
         });
-        utils.HttpGet("/getactorlist", onSuccessActor, onError);
+       
     }
 }
 function onSuccessActor(data) {
@@ -213,6 +286,7 @@ function readFile() {
 
         FR.addEventListener("load", function (e) {
             imgSource = e.target.result;
+            $('#img').attr('src', imgSource);
         });
 
         FR.readAsDataURL(this.files[0]);

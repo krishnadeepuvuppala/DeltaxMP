@@ -38,8 +38,6 @@ G:\projects\MoviePortalDeltaX\MoviePortalDeltaX\bin\Microsoft.Owin.Security.Micr
 G:\projects\MoviePortalDeltaX\MoviePortalDeltaX\bin\Microsoft.Owin.Security.OAuth.dll
 G:\projects\MoviePortalDeltaX\MoviePortalDeltaX\bin\Microsoft.Owin.Security.Twitter.dll
 G:\projects\MoviePortalDeltaX\MoviePortalDeltaX\bin\Microsoft.Web.Infrastructure.dll
-G:\projects\MoviePortalDeltaX\MoviePortalDeltaX\bin\MOVIEPORTAL_BAL.dll
-G:\projects\MoviePortalDeltaX\MoviePortalDeltaX\bin\MOVIEPORTAL_COMMON.dll
 G:\projects\MoviePortalDeltaX\MoviePortalDeltaX\bin\MOVIEPORTAL_DAL.dll
 G:\projects\MoviePortalDeltaX\MoviePortalDeltaX\bin\Newtonsoft.Json.dll
 G:\projects\MoviePortalDeltaX\MoviePortalDeltaX\bin\Owin.dll
@@ -55,8 +53,6 @@ G:\projects\MoviePortalDeltaX\MoviePortalDeltaX\bin\System.Web.WebPages.Deployme
 G:\projects\MoviePortalDeltaX\MoviePortalDeltaX\bin\System.Web.WebPages.dll
 G:\projects\MoviePortalDeltaX\MoviePortalDeltaX\bin\System.Web.WebPages.Razor.dll
 G:\projects\MoviePortalDeltaX\MoviePortalDeltaX\bin\WebGrease.dll
-G:\projects\MoviePortalDeltaX\MoviePortalDeltaX\bin\MOVIEPORTAL_BAL.pdb
-G:\projects\MoviePortalDeltaX\MoviePortalDeltaX\bin\MOVIEPORTAL_COMMON.pdb
 G:\projects\MoviePortalDeltaX\MoviePortalDeltaX\bin\MOVIEPORTAL_DAL.pdb
 G:\projects\MoviePortalDeltaX\MoviePortalDeltaX\bin\Microsoft.AI.DependencyCollector.xml
 G:\projects\MoviePortalDeltaX\MoviePortalDeltaX\bin\Microsoft.AI.ServerTelemetryChannel.xml

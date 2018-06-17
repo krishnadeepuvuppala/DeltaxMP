@@ -133,14 +133,14 @@ namespace MOVIEPORTAL_DAL
         /// <param name="MOVIE_NAME"></param>
         /// <param name="UPDATED_BY"></param>
         /// <returns>Number of rows effected</returns>
-        public int UpdateMovie(int MOVIE_ANID, int CREW_ANID, string ACTORS_ANIDS, int PRODUCER_ANID, string MOVIE_NAME, string UPDATED_BY)
+        public int UpdateMovie(int MOVIE_ANID, int CREW_ANID, string ACTORS_ANIDS, int PRODUCER_ANID, string MOVIE_NAME, string UPDATED_BY, string MOVIE_YOR,string MOVIE_PLOT, string MOVIE_POSTER)
         {
             int iRowsEffected = 0;
             try
             {
                 try
                 {
-                    SqlParameter[] arParms = new SqlParameter[6];
+                    SqlParameter[] arParms = new SqlParameter[9];
 
                     arParms[0] = new SqlParameter("@MOVIE_ANID", SqlDbType.Int);
                     arParms[0].Value = MOVIE_ANID;
@@ -159,6 +159,15 @@ namespace MOVIEPORTAL_DAL
 
                     arParms[5] = new SqlParameter("@UPDATED_BY", SqlDbType.NVarChar, 600);
                     arParms[5].Value = UPDATED_BY;
+
+                    arParms[6] = new SqlParameter("@MOVIE_YOR", SqlDbType.NVarChar, 100);
+                    arParms[6].Value = MOVIE_YOR;
+
+                    arParms[7] = new SqlParameter("@MOVIE_PLOT", SqlDbType.NVarChar);
+                    arParms[7].Value = MOVIE_PLOT;
+
+                    arParms[8] = new SqlParameter("@MOVIE_POSTER", SqlDbType.NVarChar);
+                    arParms[8].Value = MOVIE_POSTER;
 
 
 
